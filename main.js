@@ -100,7 +100,7 @@ import { addItem } from "./AgregarItem.js";
     if (!(margen >= 0)) {
       mostrarError("margen", "El margen no puede ser negativo.");
       valido = false;
-    }w
+    }
     return valido;
   }
 
@@ -237,6 +237,7 @@ import { addItem } from "./AgregarItem.js";
   export function renderizarTodo() {
     renderizarResumen();
     renderizarTabla();
+    console.log(productos)
   }
 
   // Eventos de previsualización en vivo
@@ -245,14 +246,21 @@ import { addItem } from "./AgregarItem.js";
     el.addEventListener("change", actualizarPrevisualizacion);
   });
 
-
+let prodsMod = []
    form.addEventListener("submit", function () {
     event.preventDefault();
       console.log(campoNombre)
-      addItem()
+     addItem(productos)
+
+     
    })
 
-  
+  function validarReturnAgregarProd(){
+       if (prodsMod.length == 0 ){
+        return
+      }
+      productos = prodsMod
+  }
 
 
 

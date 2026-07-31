@@ -11,7 +11,7 @@ import {validar,editandoId,productos,salirModoEdicion,renderizarTodo,campoNombre
     return "producto-" + Date.now() + "-" + contadorId;
   }
 
-export function addItem(){
+export function addItem(productosArr){
       const datos = {
       nombre: campoNombre.value.trim(),
       cantidad: parseFloat(campoCantidad.value),
@@ -24,12 +24,19 @@ export function addItem(){
    
 
     if (editandoId) {
-      productos = productos.map((p) => (p.id === editandoId ? Object.assign({ id: editandoId }, datos) : p));
+      const producto = productos.find((p)=>p.id ===editandoId);
+
+      if (producto){
+        Object.assign(producto,datos )
+      }
+    
+      
     } else {
-      productos.push(Object.assign({ id: generarId() }, datos));
+      productosArr.push(Object.assign({ id: generarId() }, datos));
     }
-    console.log(datos)
+    console.log(productosArr)
 
     salirModoEdicion();
     renderizarTodo();
+    
   };
