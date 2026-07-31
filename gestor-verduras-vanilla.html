@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Libro de Cuentas — Verduras</title>
+
+<!-- Tailwind (CDN, sin build) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fuente de acento para encabezados -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" />
+
+<style>
+  body { background: #fafaf9; }
+  .font-display { font-family: 'Fraunces', serif; }
+</style>
+</head>
+<body>
+
+<div class="min-h-full w-full bg-stone-50 text-stone-900">
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+
+    <!-- Encabezado -->
+    <header class="mb-8 border-b-2 border-emerald-900/20 pb-6">
+      <div class="flex items-center gap-3">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-white">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6" aria-hidden="true">
+            <path d="M7 20h10" /><path d="M12 20v-8" /><path d="M12 12c-4 0-6-2-6-6 4 0 6 2 6 6Z" /><path d="M12 12c4 0 6-3 6-7 -4 0-6 3-6 7Z" />
+          </svg>
+        </span>
+        <div>
+          <h1 class="font-display text-2xl font-bold text-emerald-950 sm:text-3xl">Libro de Cuentas — Verduras</h1>
+          <p class="text-sm text-stone-600">Registra tu inversión, calcula el costo por libra y onza, y define el precio de venta sugerido.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Resumen -->
+    <section aria-labelledby="resumen-titulo" class="mb-8">
+      <h2 id="resumen-titulo" class="sr-only">Resumen general</h2>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="rounded-lg border border-stone-200 bg-white p-4">
+          <div class="flex items-center gap-2 text-stone-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18" /><path d="M16 14h2" />
+            </svg>
+            <span class="text-sm font-medium">Total invertido</span>
+          </div>
+          <p id="resumen-invertido" class="mt-1 font-mono text-2xl font-semibold text-emerald-950">$0.00</p>
+        </div>
+        <div class="rounded-lg border border-emerald-800 bg-emerald-50 p-4">
+          <div class="flex items-center gap-2 text-stone-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+              <path d="M12 4a7 7 0 0 0-7 7c0 1.6.6 3 1.6 4.1L6 18h3l1-1.5c.6.2 1.3.3 2 .3s1.4-.1 2-.3L15 18h3l-.6-2.9A7 7 0 0 0 19 11a7 7 0 0 0-7-7Z" /><path d="M9 11h.01M17 9l2-2" />
+            </svg>
+            <span class="text-sm font-medium">Ganancia estimada</span>
+          </div>
+          <p id="resumen-ganancia" class="mt-1 font-mono text-2xl font-semibold text-emerald-950">$0.00</p>
+        </div>
+        <div class="rounded-lg border border-stone-200 bg-white p-4">
+          <div class="flex items-center gap-2 text-stone-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+              <path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" />
+            </svg>
+            <span class="text-sm font-medium">Margen promedio</span>
+          </div>
+          <p id="resumen-margen" class="mt-1 font-mono text-2xl font-semibold text-emerald-950">0%</p>
+          <p id="resumen-mejor" class="mt-1 text-xs text-stone-500"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario -->
+    <section aria-labelledby="form-titulo" class="mb-10 rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 id="form-titulo" class="text-lg font-semibold text-emerald-950">Agregar producto</h2>
+        <button type="button" id="btn-cancelar" hidden
+          class="inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm text-stone-600 hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+          Cancelar edición
+        </button>
+      </div>
+
+      <form id="form-producto" novalidate>
+        <input type="hidden" id="producto-id" value="" />
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+          <div>
+            <label for="campo-nombre" class="mb-1 block text-sm font-medium text-stone-700">Producto</label>
+            <input id="campo-nombre" type="text" placeholder="Ej. Tomate"
+              class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" />
+            <p id="error-nombre" class="mt-1 text-sm text-red-700" hidden></p>
+          </div>
+
+          <div>
+            <label for="campo-cantidad" class="mb-1 block text-sm font-medium text-stone-700">Cantidad comprada</label>
+            <div class="flex gap-2">
+              <input id="campo-cantidad" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"
+                class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" />
+              <label class="sr-only" for="campo-unidad">Unidad de la cantidad comprada</label>
+              <select id="campo-unidad"
+                class="w-24 shrink-0 rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50">
+                <option value="lb">lb</option>
+                <option value="oz">oz</option>
+              </select>
+            </div>
+            <p id="error-cantidad" class="mt-1 text-sm text-red-700" hidden></p>
+          </div>
+
+          <div>
+            <label for="campo-costo" class="mb-1 block text-sm font-medium text-stone-700">Costo total de compra</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-stone-500">$</span>
+              <input id="campo-costo" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"
+                class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 pl-6 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" />
+            </div>
+            <p id="error-costo" class="mt-1 text-sm text-red-700" hidden></p>
+          </div>
+
+          <div>
+            <label for="campo-margen" class="mb-1 block text-sm font-medium text-stone-700">Margen de ganancia sugerido</label>
+            <div class="relative">
+              <input id="campo-margen" type="number" min="0" step="1" inputmode="decimal" placeholder="30" value="30"
+                class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 pr-8 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" />
+              <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500">%</span>
+            </div>
+            <p id="error-margen" class="mt-1 text-sm text-red-700" hidden></p>
+          </div>
+        </div>
+
+        <!-- Previsualización en vivo -->
+        <div role="status" aria-live="polite" id="previsualizacion"
+          class="mt-5 rounded-md border border-dashed border-stone-300 bg-stone-50 px-4 py-3 text-sm">
+          <span class="text-stone-500">Completa cantidad, costo y margen para ver el cálculo del costo y precio por libra y onza.</span>
+        </div>
+
+        <div class="mt-5">
+          <button type="submit" id="btn-enviar"
+            class="inline-flex items-center gap-2 rounded-md bg-emerald-800 px-4 py-2 font-medium text-white hover:bg-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+            <span id="btn-enviar-texto">Agregar producto</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <div aria-live="polite" class="sr-only" id="aviso-borrado"></div>
+
+    <!-- Tabla -->
+    <section aria-labelledby="tabla-titulo">
+      <h2 id="tabla-titulo" class="mb-3 text-lg font-semibold text-emerald-950">Productos registrados</h2>
+
+      <div id="tabla-vacia" class="rounded-lg border border-dashed border-stone-300 bg-white px-6 py-10 text-center text-stone-600">
+        Aún no hay productos. Agrega el primero en el formulario de arriba.
+      </div>
+
+      <div id="tabla-contenedor" class="overflow-x-auto rounded-lg border border-stone-200 bg-white" hidden>
+        <table class="w-full min-w-[860px] border-collapse text-sm">
+          <caption class="sr-only">Lista de productos con su costo, cantidad, margen y precio de venta sugerido por libra y por onza.</caption>
+          <thead>
+            <tr class="border-b border-stone-200 bg-stone-100 text-left text-stone-700">
+              <th scope="col" class="px-4 py-3 font-semibold">Producto</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Compra</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Margen</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Costo / lb — oz</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Precio sugerido</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Ganancia estimada</th>
+              <th scope="col" class="px-4 py-3 font-semibold"><span class="sr-only">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody id="tabla-cuerpo"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</div>
+<script type="module" src="main.js"></script>>
+
+</body>
+</html>
