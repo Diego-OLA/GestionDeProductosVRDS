@@ -19,6 +19,7 @@ export function addItem(productosArr){
       costoTotal: parseFloat(campoCosto.value),
       margen: parseFloat(campoMargen.value),
     };  
+   
     if (!validar()) return;
 
    
