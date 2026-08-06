@@ -1,7 +1,7 @@
 const previsualizacionC = document.getElementById("previsualizacion");
 import { campoCantidad,campoMargen,campoUnidad,campoCosto } from "./main.js";
 import { calcularProducto } from "./calcularProd.js";
-import { fmtMoney,fmtMoneyPreciso } from "./main.js";
+import { fmtMoney,fmtMoneyPreciso } from "./utils/formater.js";
 
 export function actualizarPrevisualizacion() {
     const cantidad = parseFloat(campoCantidad.value);

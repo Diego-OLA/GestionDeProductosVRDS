@@ -88,8 +88,10 @@
 
           <div>
             <label for="campo-nombre" class="mb-1 block text-sm font-medium text-stone-700">Producto</label>
-            <input id="campo-nombre" type="text" placeholder="Ej. Tomate"
-              class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" />
+            <select id="campo-nombre" placeholder="Ej. Tomate"
+              class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" >
+               <option>lb</option>
+            </select>
             <p id="error-nombre" class="mt-1 text-sm text-red-700" hidden></p>
           </div>
 
@@ -103,6 +105,7 @@
                 class="w-24 shrink-0 rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50">
                 <option value="lb">lb</option>
                 <option value="oz">oz</option>
+                <option value="oz">Unidad</option>
               </select>
             </div>
             <p id="error-cantidad" class="mt-1 text-sm text-red-700" hidden></p>
@@ -142,8 +145,13 @@
             <span id="btn-enviar-texto">Agregar producto</span>
           </button>
         </div>
+       
       </form>
     </section>
+     <div class="mx-6 mt-5 mb-5">
+          <a class="inline-flex items-center gap-2 rounded-md bg-emerald-800 px-4 py-2 font-medium text-white hover:bg-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2" href="./pages/agregarProducto.html" target="_blank" rel="noopener noreferrer">Ver productos </a>
+      </div>
+    
 
     <div aria-live="polite" class="sr-only" id="aviso-borrado"></div>
 
@@ -176,6 +184,7 @@
 
   </div>
 </div>
+<script type="module" src="secret.js"></script>
 <script type="module" src="main.js"></script>>
 
 </body>

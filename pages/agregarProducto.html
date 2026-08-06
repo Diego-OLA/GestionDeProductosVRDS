@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <!-- Tailwind (CDN, sin build) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fuente de acento para encabezados -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" />
+</head>
+<body class="bg-stone-200  ">
+    <div class="flex flex-col mx-auto max-w-5xl px-4 py-8 sm:px-6 gap-10">
+        <div class="w-full flex-col flex items-center ">
+         <h1 class="font-display text-stone-900 text-2xl sm:text-3xl font-bold">Gestion de los productos</h1>
+         </div>
+         <div class="w-full flex flex-col items-center gap-8">
+            <button class= "text-white px-4 py-2 font-medium bg-emerald-800 hover:bg-emerald-900 ring-emerald-700 rounded-md" id="btn_agregar_prod" >Agregar Producto</button>
+         <div class="flex">
+            <input placeholder="Ejemplo: Planatanos" type="text" id="input_producto" class="rounded-md font-medium border border-emerald-800 bg-stone-300 px-3 py-2 focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50">
+         </div>
+         </div>
+         <div class="bg-stone-200 flex flex-col items-center" id="tabla_div">
+          
+         </div>
+
+
+    </div>
+    <script src="../productos/obtenerProductos.js" type="module"></script>
+    <script type="module" src="../productos/agregarProducto.js"></script>   
+    <script type="module" src="../services/inventarioRepository.js"></script>
+    
+</body>
+</html>

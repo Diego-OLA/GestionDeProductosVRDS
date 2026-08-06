@@ -2,6 +2,11 @@
 import { actualizarPrevisualizacion } from "./previsualizacion.js";    
 import { calcularProducto } from "./calcularProd.js";
 import { addItem } from "./AgregarItem.js";
+import {renderizarFilasInventario} from "./inventario/cargarInventario.js"
+import { fmtMoney } from "./utils/formater.js";
+import { fmtMoneyPreciso } from "./utils/formater.js";
+import { fmtPct } from "./utils/formater.js";
+import { agregarInventario } from "./inventario/agregarInventario.js";
 
 
     
@@ -11,22 +16,6 @@ import { addItem } from "./AgregarItem.js";
   export let editandoId = null;
    
 
-
-
-  export const fmtMoney = (v) =>
-    new Intl.NumberFormat("es-SV", { style: "currency", currency: "USD" }).format(Number.isFinite(v) ? v : 0);
-
-  export const fmtMoneyPreciso = (v) =>
-    new Intl.NumberFormat("es-SV", {
-      style: "currency", currency: "USD", minimumFractionDigits: 3, maximumFractionDigits: 3,
-    }).format(Number.isFinite(v) ? v : 0);
-
-  export const fmtPct = (v) =>
-    new Intl.NumberFormat("es-SV", { maximumFractionDigits: 1 }).format(Number.isFinite(v) ? v : 0) + "%";
-
- 
-
- 
 
   // Referencias al DOM
   const form = document.getElementById("form-producto");
@@ -216,11 +205,7 @@ import { addItem } from "./AgregarItem.js";
     );
   }
 
-  function escapeHTML(texto) {
-    const div = document.createElement("div");
-    div.textContent = texto;
-    return div.innerHTML;
-  }
+
 
   function renderizarTabla() {
     if (productos.length === 0) {
@@ -247,10 +232,46 @@ import { addItem } from "./AgregarItem.js";
   });
 
 let prodsMod = []
+ export let inventarios = []
+
+ export function setInventario(inv){
+
+   inventarios.unshift(inv[0])
+ }
+  export function setInventarios(inv){
+
+   inventarios = inv
+ }
+    async function guardado(){
+
+     const inventario  = {
+          producto_id: 6,
+          unidad_compra: "unidad",
+          cantidad_comprada: 50,
+          costo_total: 28,
+          costo_libra: 0.5,
+          costo_onza: 0.02,
+          costo_unidad: 0.75,
+          margen: 40,
+          precio_libra: 1.50,
+          precio_onza: 0.44,
+          precio_unidad: 0.25,
+        
+      }
+
+
+     let newIn = await agregarInventario(inventario)
+     setInventario(newIn)
+     
+  pruebaRender()
+     
+    }
+
    form.addEventListener("submit", function () {
     event.preventDefault();
-      console.log(campoNombre)
-     addItem(productos)
+     
+     //addItem(productos)
+     guardado()
 
      
    })
@@ -288,5 +309,14 @@ let prodsMod = []
 
   // Estado inicial
    actualizarPrevisualizacion()     
-  renderizarTodo();
+  //renderizarTodo();
+ async function pruebaRender(){
+    tablaCuerpo.innerHTML = await renderizarFilasInventario()
+    tablaVacia.hidden = true;
+    tablaContenedor.hidden = false;
+
+  }
+
+  pruebaRender()
+  
 
