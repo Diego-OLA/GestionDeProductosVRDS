@@ -12,7 +12,8 @@ export async function saveInventario(inventario) {
         margen: inventario.margen,
         precio_libra: inventario.precio_libra,
         precio_onza: inventario.precio_onza,
-        precio_unidad: inventario.precio_unidad,} 
+        precio_unidad: inventario.precio_unidad,
+        ganancia_total:inventario.ganancia_total} 
     ]).select()
 
     

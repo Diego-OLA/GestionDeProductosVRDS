@@ -37,7 +37,7 @@ import { inventarios, setInventarios } from "../main.js";
               ${fmtMoneyPreciso(inventario.precio_onza)} / oz
             </span>
              <span class="inline-block w-fit -rotate-2 rounded border border-dashed border-orange-700 bg-orange-700 px-2 py-0.5 font-mono text-xs font-semibold text-white">
-              ${fmtMoneyPreciso(inventario.precio_unidad)} / oz
+              ${fmtMoneyPreciso(inventario.precio_unidad)} / unidad
             </span>
           </div>
         </td>

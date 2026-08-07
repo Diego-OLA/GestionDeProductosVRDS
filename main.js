@@ -266,6 +266,7 @@ let prodsMod = []
           precio_libra: c.precioLb,
           precio_onza: c.precioOz,
           precio_unidad: c.precioUnidad,
+          ganancia_total:c.gananciaTotalEstimada
         
       }
 
