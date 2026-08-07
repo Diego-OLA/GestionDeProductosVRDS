@@ -1,3 +1,4 @@
+import { obtenerDatos } from "../services/productoRepository.js"
 import { productos } from "./obtenerProductos.js"
 
 export function agregarFilaProducto(){
@@ -18,3 +19,17 @@ const divTabla = document.getElementById("tabla_div")
     }
 
     }
+
+const inputProducto = document.getElementById("campo-nombre")
+
+export async function agregarOptions(){
+
+   const toOptions = await obtenerDatos()
+    
+   const prodsToOptions = toOptions.map(producto => {
+      return  `<option value="${producto.id}"> ${producto.producto} </option>`
+   }).join()
+
+   inputProducto.innerHTML = prodsToOptions
+
+}

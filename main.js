@@ -7,6 +7,7 @@ import { fmtMoney } from "./utils/formater.js";
 import { fmtMoneyPreciso } from "./utils/formater.js";
 import { fmtPct } from "./utils/formater.js";
 import { agregarInventario } from "./inventario/agregarInventario.js";
+import { agregarOptions } from "./productos/agregarFilaProducto.js";
 
 
     
@@ -242,20 +243,29 @@ let prodsMod = []
 
    inventarios = inv
  }
-    async function guardado(){
 
+ 
+
+    async function guardado(){
+      const p = {
+        cantidad:parseFloat(campoCantidad.value),
+        unidadCompra:parseFloat(campoUnidad.value),
+        costoTotal:parseFloat(campoCosto.value),
+        margen:campoMargen.value
+      }
+      const c = calcularProducto(p)
      const inventario  = {
-          producto_id: 6,
-          unidad_compra: "unidad",
-          cantidad_comprada: 50,
-          costo_total: 28,
-          costo_libra: 0.5,
-          costo_onza: 0.02,
-          costo_unidad: 0.75,
-          margen: 40,
-          precio_libra: 1.50,
-          precio_onza: 0.44,
-          precio_unidad: 0.25,
+          producto_id: campoNombre.value,
+          unidad_compra: campoUnidad.value,
+          cantidad_comprada: campoCantidad.value,
+          costo_total: campoCosto.value,
+          costo_libra: c.costoPorLb,
+          costo_onza: c.costoPorOz,
+          costo_unidad: c.costoUnidad,
+          margen: campoMargen.value,
+          precio_libra: c.precioLb,
+          precio_onza: c.precioOz,
+          precio_unidad: c.precioUnidad,
         
       }
 
@@ -318,5 +328,10 @@ let prodsMod = []
   }
 
   pruebaRender()
+  
+
+  document.addEventListener('DOMContentLoaded',()=>{
+      agregarOptions()
+  })
   
 

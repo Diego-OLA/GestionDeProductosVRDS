@@ -16,14 +16,25 @@ export function actualizarPrevisualizacion() {
     }
 
     const c = calcularProducto({ cantidad, unidadCompra: unidad, costoTotal, margen });
-    const unidadTexto = unidad === "lb" ? "libras" : "onzas";
+    let unidadTexto = ""
+    if(unidad === "libra"){
+      unidadTexto = "libra"
+    }else if(unidad === "libra"){
+      unidadTexto = "onza"
+    }else{
+      unidadTexto = "unidad"
+    }
+
+      
 
     previsualizacion.innerHTML =
       '<div class="flex flex-wrap items-center gap-x-6 gap-y-1 font-mono text-stone-800">' +
       '<span>Comprado: <strong>' + campoCantidad.value + " " + unidadTexto + "</strong></span>" +
       "<span>Costo/lb: <strong>" + fmtMoneyPreciso(c.costoPorLb) + "</strong></span>" +
       "<span>Costo/oz: <strong>" + fmtMoneyPreciso(c.costoPorOz) + "</strong></span>" +
+      "<span>Costo/Unidad: <strong>" + fmtMoneyPreciso(c.costoUnidad) + "</strong></span>" +
       "<span>Precio sugerido/lb: <strong>" + fmtMoneyPreciso(c.precioLb) + "</strong></span>" +
       "<span>Precio sugerido/oz: <strong>" + fmtMoneyPreciso(c.precioOz) + "</strong></span>" +
+      "<span>Precio sugerido/Unidad: <strong>" + fmtMoneyPreciso(c.precioUnidad) + "</strong></span>" +
       "</div>";
   }

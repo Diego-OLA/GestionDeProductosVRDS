@@ -26,6 +26,7 @@ import { inventarios, setInventarios } from "../main.js";
         <td class="px-4 py-3 align-top font-mono text-stone-700">
           <div>${fmtMoneyPreciso(inventario.costo_libra)} / lb</div>
           <div class="text-stone-500">${fmtMoneyPreciso(inventario.costo_onza)} / oz</div>
+           <div class="text-stone-500">${fmtMoneyPreciso(inventario.costo_unidad)} / oz</div>
         </td>
         <td class="px-4 py-3 align-top">
           <div class="flex flex-col gap-1">
@@ -33,6 +34,9 @@ import { inventarios, setInventarios } from "../main.js";
               ${fmtMoneyPreciso(inventario.precio_libra)} / lb
             </span>
             <span class="inline-block w-fit -rotate-2 rounded border border-dashed border-orange-700 bg-orange-700 px-2 py-0.5 font-mono text-xs font-semibold text-white">
+              ${fmtMoneyPreciso(inventario.precio_onza)} / oz
+            </span>
+             <span class="inline-block w-fit -rotate-2 rounded border border-dashed border-orange-700 bg-orange-700 px-2 py-0.5 font-mono text-xs font-semibold text-white">
               ${fmtMoneyPreciso(inventario.precio_unidad)} / oz
             </span>
           </div>

@@ -90,7 +90,7 @@
             <label for="campo-nombre" class="mb-1 block text-sm font-medium text-stone-700">Producto</label>
             <select id="campo-nombre" placeholder="Ej. Tomate"
               class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50" >
-               <option>lb</option>
+               <option></option>
             </select>
             <p id="error-nombre" class="mt-1 text-sm text-red-700" hidden></p>
           </div>
@@ -103,9 +103,9 @@
               <label class="sr-only" for="campo-unidad">Unidad de la cantidad comprada</label>
               <select id="campo-unidad"
                 class="w-24 shrink-0 rounded-md border border-stone-300 bg-white px-3 py-2 text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50">
-                <option value="lb">lb</option>
-                <option value="oz">oz</option>
-                <option value="oz">Unidad</option>
+                <option value="libra">lb</option>
+                <option value="onza">oz</option>
+                <option value="unidad">Unidad</option>
               </select>
             </div>
             <p id="error-cantidad" class="mt-1 text-sm text-red-700" hidden></p>
@@ -186,6 +186,7 @@
 </div>
 <script type="module" src="secret.js"></script>
 <script type="module" src="main.js"></script>>
+<script type="module" src="/productos/agregarFilaProducto.js"></script>
 
 </body>
 </html>
